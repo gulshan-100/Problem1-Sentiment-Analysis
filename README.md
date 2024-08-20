@@ -2,9 +2,8 @@
 
 It is a web application built with Flask that allows users to upload audio files for sentiment analysis. The application utilizes AssemblyAI's transcription and sentiment analysis capabilities to analyze the emotions and sentiments expressed in the audio content.
 
-## Screenshot
-![Web App Screenshot](https://github.com/gulshan-100/Problem1-Sentiment-Analysis/blob/main/Screenshot-demo.png)
-
+## Video
+https://github.com/gulshan-100/Problem1-Sentiment-Analysis/blob/main/screen-recording.mp4
 
 ## Features
 1. Upload audio files in various formats (MP3, WAV, OGG, FLAC).

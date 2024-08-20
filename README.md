@@ -16,7 +16,7 @@ To get started with this project, follow these steps:
 
 1. Clone this repository
 ```
-git clone https://github.com/yourusername/Problem1-Sentiment-Analysis.git
+git clone https://github.com/gulshan-100/Problem1-Sentiment-Analysis.git
 cd Problem1-Sentiment-Analysis
 ```
 2. Set Up a Virtual Environment

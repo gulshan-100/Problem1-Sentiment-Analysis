@@ -1,0 +1,4 @@
+assemblyai
+flask
+io
+python-dotenv

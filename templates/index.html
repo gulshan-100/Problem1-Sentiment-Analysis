@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Sentiment Analysis</title>
+    <link rel="stylesheet" href="static\styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Audio Sentiment Analysis</h1>
+        <p>Upload an audio file to analyze its sentiment.</p>
+        <input type="file" id="fileInput" accept=".mp3,.wav,.ogg,.flac">
+        <button id="uploadButton">Upload and Analyze</button>
+        <div id="resultContainer"></div>
+    </div>
+    <script>
+        document.getElementById('uploadButton').addEventListener('click', () => {
+            alert('Wait for few seconds....')
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultContainer = document.getElementById('resultContainer');
+                resultContainer.innerHTML = ''; // Clear previous results
+
+                if (data.error) {
+                    resultContainer.innerHTML = `<p style="color: red;">${data.error}</p>`;
+                } else {
+                    data.results.forEach(result => {
+                        const resultItem = document.createElement('div');
+                        resultItem.classList.add('result-item');
+
+                        resultItem.innerHTML = `
+                            <h3>Text: ${result.text}</h3>
+                            <p><strong>Sentiment:</strong> ${result.sentiment} (Confidence: ${result.confidence.toFixed(2)})</p>
+                            <p><strong>Timestamp:</strong> ${result.start} - ${result.end}</p>
+                        `;
+                        resultContainer.appendChild(resultItem);
+                    });
+                }
+            })
+            .catch(error => {
+                document.getElementById('resultContainer').innerHTML = `<p style="color: red;">An error occurred: ${error.message}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
